@@ -76,10 +76,6 @@ correct.Visible = true
 wait(2)
 Frame:Destroy()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/DaRealGeo/robloxhub/master/bloxtaplonely"))()
-else
-failed.Visible = true
-wait(2)
-failed.Visible = false
 end
 if (textbox.Text == "brickmodishot") then
 correct.Visible = true
