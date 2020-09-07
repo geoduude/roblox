@@ -71,11 +71,21 @@ verify.TextColor3 = Color3.fromRGB(255, 255, 255)
 verify.TextSize = 24.000
 verify.TextWrapped = true
 verify.MouseButton1Click:Connect(function()
-if (textbox.Text == "F4IL3DAD00PTION" or "brickmodishot112") then
+if (textbox.Text == "F4IL3DAD00PTION") then
 correct.Visible = true
 wait(2)
 Frame:Destroy()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/DaRealGeo/robloxhub/master/bloxtaplonely"))()
+else
+failed.Visible = true
+wait(2)
+failed.Visible = false
+end
+if (textbox.Text == "brickmodishot") then
+correct.Visible = true
+wait(2)
+Frame:Destroy()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DaRealGeo/robloxhub/master/bloxtapbrickmod"))()
 else
 failed.Visible = true
 wait(2)
