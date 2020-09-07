@@ -12,6 +12,7 @@ local verify = Instance.new("TextButton")
 local orange = Instance.new("ImageLabel")
 local name = Instance.new("TextLabel")
 local correct = Instance.new("TextLabel")
+local failed = Instance.new("TextLabel")
 
 --Properties:
 
@@ -69,20 +70,26 @@ verify.Text = "verify"
 verify.TextColor3 = Color3.fromRGB(255, 255, 255)
 verify.TextSize = 24.000
 verify.TextWrapped = true
-if textbot.Text == "brickmodishot" then
-wait(0.4)
+verify.MouseButton1Click:Connect(function()
+if (textbox.Text == "F4IL3DAD00PTION") then
 correct.Visible = true
-wait(3)
+wait(2)
 Frame:Destroy()
-wait(0.1)
-loadstring(game:HttpGet("https://raw.githubusercontent.com/DaRealGeo/robloxhub/master/bloxtapbrickmod"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DaRealGeo/robloxhub/master/adopt"))()
+else
+failed.Visible = true
+wait(2)
+failed.Visible = false
 end
+end)
+
+
 
 orange.Name = "orange"
 orange.Parent = Frame
 orange.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 orange.BackgroundTransparency = 1.000
-orange.Position = UDim2.new(-0.00141887367, 0, -0.0320995897, 0)
+orange.Position = UDim2.new(0, 0, -0.0320000015, 0)
 orange.Size = UDim2.new(0, 350, 0, 38)
 orange.Image = "rbxassetid://3570695787"
 orange.ImageColor3 = Color3.fromRGB(255, 200, 103)
@@ -114,3 +121,16 @@ correct.Font = Enum.Font.GothamSemibold
 correct.Text = "correct key, loading..."
 correct.TextColor3 = Color3.fromRGB(255, 255, 255)
 correct.TextSize = 14.000
+
+failed.Name = "failed"
+failed.Parent = Frame
+failed.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+failed.BackgroundTransparency = 1.000
+failed.Position = UDim2.new(0.308571428, 0, 0.824065745, 0)
+failed.Size = UDim2.new(0, 130, 0, 36)
+failed.Visible = false
+failed.ZIndex = 50
+failed.Font = Enum.Font.GothamSemibold
+failed.Text = "key doesnt exist"
+failed.TextColor3 = Color3.fromRGB(255, 185, 185)
+failed.TextSize = 14.000
