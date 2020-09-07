@@ -75,7 +75,7 @@ if (textbox.Text == "F4IL3DAD00PTION") then
 correct.Visible = true
 wait(2)
 Frame:Destroy()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/DaRealGeo/robloxhub/master/adopt"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DaRealGeo/robloxhub/master/bloxtaplonely"))()
 else
 failed.Visible = true
 wait(2)
