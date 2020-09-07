@@ -3,7 +3,7 @@
 
 -- Instances:
 
-local ScreenGui = Instance.new("ScreenGui")
+local bloxtapkey = Instance.new("ScreenGui")
 local Frame = Instance.new("ImageLabel")
 local Frame_2 = Instance.new("Frame")
 local Frame_3 = Instance.new("Frame")
@@ -13,13 +13,15 @@ local orange = Instance.new("ImageLabel")
 local name = Instance.new("TextLabel")
 local correct = Instance.new("TextLabel")
 local failed = Instance.new("TextLabel")
+local quit = Instance.new("TextButton")
 
 --Properties:
 
-ScreenGui.Parent = game.CoreGui
+bloxtapkey.Name = "bloxtap key"
+bloxtapkey.Parent = game.CoreGui
 
 Frame.Name = "Frame"
-Frame.Parent = ScreenGui
+Frame.Parent = bloxtapkey
 Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Frame.BackgroundTransparency = 1.000
 Frame.Position = UDim2.new(0.158581123, 0, 0.246525243, 0)
@@ -30,6 +32,8 @@ Frame.ImageColor3 = Color3.fromRGB(45, 48, 58)
 Frame.ScaleType = Enum.ScaleType.Slice
 Frame.SliceCenter = Rect.new(100, 100, 100, 100)
 Frame.SliceScale = 0.060
+Frame.Active = true
+Frame.Draggable = true
 
 Frame_2.Parent = Frame
 Frame_2.BackgroundColor3 = Color3.fromRGB(54, 59, 63)
@@ -89,8 +93,6 @@ failed.Visible = false
 end
 end)
 
-
-
 orange.Name = "orange"
 orange.Parent = Frame
 orange.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -140,3 +142,20 @@ failed.Font = Enum.Font.GothamSemibold
 failed.Text = "key doesnt exist"
 failed.TextColor3 = Color3.fromRGB(255, 185, 185)
 failed.TextSize = 14.000
+
+quit.Name = "quit"
+quit.Parent = Frame
+quit.BackgroundColor3 = Color3.fromRGB(58, 62, 75)
+quit.BackgroundTransparency = 1.000
+quit.Position = UDim2.new(0.903713226, 0, -0.0047618188, 0)
+quit.Size = UDim2.new(0, 33, 0, 33)
+quit.ZIndex = 999
+quit.Font = Enum.Font.Arial
+quit.Text = "X"
+quit.TextColor3 = Color3.fromRGB(255, 0, 0)
+quit.TextScaled = true
+quit.TextSize = 14.000
+quit.TextWrapped = true
+quit.MouseButton1Click:Connect(function()
+Frame:Destroy()
+end)
