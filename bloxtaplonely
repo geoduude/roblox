@@ -2027,6 +2027,11 @@ end
 end
 end)
 
+game.ReplicatedStorage.Viewmodels["v_Negev"].HumanoidRootPart.Transparency = 1
+game.ReplicatedStorage.Viewmodels["v_Scout"].HumanoidRootPart.Transparency = 1
+game.ReplicatedStorage.Viewmodels["v_USP"].HumanoidRootPart.Transparency = 1
+game.ReplicatedStorage.Viewmodels["v_Tec9"].HumanoidRootPart.Transparency = 1
+game.ReplicatedStorage.Viewmodels["v_SawedOff"].HumanoidRootPart.Transparency = 1
 
 addscroll({parent=ViewmodelVisuals,valuename='armtransparency',title='Arms Transparency',maxed=100,value=0},function(y)	end)
 
