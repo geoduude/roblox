@@ -81,11 +81,11 @@ wait(2)
 Frame:Destroy()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/DaRealGeo/robloxhub/master/bloxtaplonely"))()
 end
-if (textbox.Text == "brickmodishot") then
+if (textbox.Text == "admin") then
 correct.Visible = true
 wait(2)
 Frame:Destroy()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/DaRealGeo/robloxhub/master/bloxtapbrickmod"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DaRealGeo/robloxhub/master/bloxtapadministrator"))()
 else
 failed.Visible = true
 wait(2)
