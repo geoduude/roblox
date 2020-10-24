@@ -75,11 +75,11 @@ verify.TextColor3 = Color3.fromRGB(255, 255, 255)
 verify.TextSize = 24.000
 verify.TextWrapped = true
 verify.MouseButton1Click:Connect(function()
-if (textbox.Text == "F4IL3DAD00PTION") then
+if (textbox.Text == "officestopbeingloud") then
 correct.Visible = true
 wait(2)
 Frame:Destroy()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/DaRealGeo/robloxhub/master/bloxtaplonely"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DaRealGeo/robloxhub/master/bloxtapoffice"))()
 end
 if (textbox.Text == "admin") then
 correct.Visible = true
