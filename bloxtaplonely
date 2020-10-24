@@ -1,4 +1,4 @@
-_G['bloxtapusername'] = "FailedAdoption"
+_G['bloxtapusername'] = "Office.cc"
 for i,v in pairs(game:GetService("CoreGui"):GetChildren()) do
 	if v.Name == "bloxtap" then
 		v:Destroy()
