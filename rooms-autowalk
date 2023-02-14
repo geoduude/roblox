@@ -1,1 +1,172 @@
 
+-- Made by geodude
+
+local PathfindingService = game:GetService("PathfindingService")
+local VirtualInputManager = game:GetService('VirtualInputManager')
+local LocalPlayer = game.Players.LocalPlayer
+local LatestRoom = game.ReplicatedStorage.GameData.LatestRoom
+
+local Cooldown = false
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game.CoreGui
+
+local TextLabel = Instance.new("TextLabel")
+TextLabel.Parent = ScreenGui
+
+TextLabel.Size = UDim2.new(0,325,0,100)
+TextLabel.TextSize = 48
+TextLabel.TextStrokeColor3 = Color3.new(1,1,1)
+TextLabel.TextStrokeTransparency = 0
+TextLabel.BackgroundTransparency = 1
+
+local GC = getconnections or get_signal_cons
+if GC then
+	for i,v in pairs(GC(LocalPlayer.Idled)) do
+		if v["Disable"] then
+			v["Disable"](v)
+	elseif v["Disconnect"] then
+			v["Disconnect"](v)
+		end
+	end
+end
+
+if workspace:FindFirstChild("PathFindPartsFolder") then
+    workspace.PathFindPartsFolder:Destroy()
+end
+
+local Folder = Instance.new("Folder")
+Folder.Parent = workspace
+Folder.Name = "PathFindPartsFolder"
+
+function GetOut()
+    LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.KeyboardMouse
+        task.wait()
+    VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.W, false, nil)
+
+    for i=1,3 do
+        task.wait()
+    end
+
+    VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.W, false, nil)
+        task.wait()
+    LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.Scriptable
+end
+
+function getLocker()
+    local Closest
+
+    for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
+        if v.Name == "Rooms_Locker" then
+            if v:FindFirstChild("Door") and v:FindFirstChild("HiddenPlayer") then
+                if v.Door.Position.Y > -3 then
+                    if Closest == nil then
+                        Closest = v.Door
+                    else
+                        if (LocalPlayer.Character.HumanoidRootPart.Position - v.Door.Position).Magnitude < (Closest.Position - LocalPlayer.Character.HumanoidRootPart.Position).Magnitude then
+                            Closest = v.Door
+                        end
+                    end
+                end
+            end
+        end
+    end
+    return Closest
+end
+
+function getPath()
+    local Part
+
+    if workspace:FindFirstChild("A120") or workspace:FindFirstChild("A60") then
+        Part = getLocker()
+    else
+        Part = workspace.CurrentRooms[LatestRoom.Value].Door.Door
+    end
+    return Part
+end
+
+LatestRoom:GetPropertyChangedSignal("Value"):Connect(function()
+    TextLabel.Text = "Room: "..math.clamp(LatestRoom.Value, 1,1000)
+
+    if LatestRoom.Value ~= 1000 then
+        LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.Scriptable
+    else
+        LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.KeyboardMouse
+    end
+end)
+
+game:GetService("RunService").RenderStepped:connect(function()
+    LocalPlayer.Character.HumanoidRootPart.CanCollide = false
+    LocalPlayer.Character.Collision.CanCollide = false
+    LocalPlayer.Character.Collision.Size = Vector3.new(8,LocalPlayer.Character.Collision.Size.Y,8)
+
+    LocalPlayer.Character.Humanoid.WalkSpeed = 21
+
+    local Path = getPath()
+    
+    local Entity = workspace:FindFirstChild("A60") or workspace:FindFirstChild("A120")
+    if Entity then
+        if Path then
+            if Path.Parent.Name == "Rooms_Locker" then
+                if Entity.Main.Position.Y > -5 then
+                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.Position).Magnitude < 1.5 then
+                        if LocalPlayer.Character.HumanoidRootPart.Anchored == false then
+                            fireproximityprompt(Path.Parent.HidePrompt)
+                        end
+                    end
+                end
+            end
+        end
+        if Entity.Main.Position.Y < -5 then
+            if LocalPlayer.Character.HumanoidRootPart.Anchored == true then
+                if Cooldown == false then
+                    GetOut()
+                    Cooldown = true
+                    task.wait(.75)
+                    Cooldown = false
+                end
+            end
+        end
+    else
+        if LocalPlayer.Character.HumanoidRootPart.Anchored == true then
+            if Cooldown == false then
+                GetOut()
+                Cooldown = true
+                task.wait(.75)
+                Cooldown = false
+            end
+        end
+    end
+end)
+
+while true do
+    task.wait()
+    local Destination = getPath()
+
+    local path = PathfindingService:CreatePath({ WaypointSpacing = 10, AgentRadius = 0.5, AgentCanJump = false })
+    path:ComputeAsync(LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0,2.8,0), Destination.Position)
+    local Waypoints = path:GetWaypoints()
+
+    if path.Status ~= Enum.PathStatus.NoPath or path.Status ~= Enum.PathStatus.FailStartNotEmpty or path.Status ~= Enum.PathStatus.FailFinishNotEmpty then
+    
+        Folder:ClearAllChildren()
+
+        for _, Waypoint in pairs(Waypoints) do
+            local part = Instance.new("Part")
+            part.Size = Vector3.new(0.6, 3, 0.6)
+            part.Position = Waypoint.Position
+            part.Material = Enum.Material.SmoothPlastic
+            part.Transparency = 0.65
+            part.Anchored = true
+            part.CanCollide = false
+            part.Parent = Folder
+        end
+
+        for _, Waypoint in pairs(Waypoints) do
+            if LocalPlayer.Character.HumanoidRootPart.Anchored == false then
+                LocalPlayer.Character.Humanoid:MoveTo(Waypoint.Position)
+                LocalPlayer.Character.Humanoid.MoveToFinished:Wait()
+            end
+        end
+    end
+end
