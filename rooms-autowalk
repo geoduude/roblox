@@ -1,4 +1,6 @@
 -- Made by geodude
+-- Usage in multiplayer not reccomended
+
 
 local PathfindingService = game:GetService("PathfindingService")
 local VirtualInputManager = game:GetService('VirtualInputManager')
@@ -38,7 +40,7 @@ local Folder = Instance.new("Folder")
 Folder.Parent = workspace
 Folder.Name = "PathFindPartsFolder"
 
-LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.A90:Destroy(true)
+LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.A90:Destroy() -- Fuck you A90
 
 function GetOut()
     LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.KeyboardMouse
