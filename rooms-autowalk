@@ -1,6 +1,6 @@
+
 -- Made by geodude
 -- Usage in multiplayer not reccomended
-
 
 local PathfindingService = game:GetService("PathfindingService")
 local VirtualInputManager = game:GetService('VirtualInputManager')
