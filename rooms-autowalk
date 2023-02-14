@@ -1,4 +1,3 @@
-
 -- Made by geodude
 
 local PathfindingService = game:GetService("PathfindingService")
@@ -39,9 +38,11 @@ local Folder = Instance.new("Folder")
 Folder.Parent = workspace
 Folder.Name = "PathFindPartsFolder"
 
+LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.A90:Destroy(true)
+
 function GetOut()
     LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.KeyboardMouse
-        task.wait()
+    task.wait()
     VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.W, false, nil)
 
     for i=1,3 do
@@ -49,7 +50,7 @@ function GetOut()
     end
 
     VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.W, false, nil)
-        task.wait()
+    task.wait()
     LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.Scriptable
 end
 
@@ -59,7 +60,7 @@ function getLocker()
     for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
         if v.Name == "Rooms_Locker" then
             if v:FindFirstChild("Door") and v:FindFirstChild("HiddenPlayer") then
-                if v.Door.Position.Y > -3 then
+                if v.Door.Position.Y > -3 then -- Prevents going to the lower lockers in the room with the bridge 
                     if Closest == nil then
                         Closest = v.Door
                     else
@@ -109,7 +110,7 @@ game:GetService("RunService").RenderStepped:connect(function()
         if Path then
             if Path.Parent.Name == "Rooms_Locker" then
                 if Entity.Main.Position.Y > -5 then
-                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.Position).Magnitude < 1.5 then
+                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.Position).Magnitude < 2.5 then
                         if LocalPlayer.Character.HumanoidRootPart.Anchored == false then
                             fireproximityprompt(Path.Parent.HidePrompt)
                         end
@@ -117,7 +118,7 @@ game:GetService("RunService").RenderStepped:connect(function()
                 end
             end
         end
-        if Entity.Main.Position.Y < -5 then
+        if Entity.Main.Position.Y < -5 then -- Instead of waiting for them to be deleted just do this LOL
             if LocalPlayer.Character.HumanoidRootPart.Anchored == true then
                 if Cooldown == false then
                     GetOut()
