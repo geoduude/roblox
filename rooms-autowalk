@@ -164,7 +164,7 @@ while true do
             part.Size = Vector3.new(0.6, 6, 0.6)
             part.Position = Waypoint.Position
             part.Material = "Neon"
-            part.Transparency = 0.65
+            part.Transparency = 0.8
             part.Anchored = true
             part.CanCollide = false
             part.Parent = Folder
