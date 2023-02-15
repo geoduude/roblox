@@ -4,9 +4,27 @@
 
 if game.PlaceId ~= 6839171747 or game.ReplicatedStorage.GameData.Floor.Value ~= "Rooms" then
 	game.StarterGui:SetCore("SendNotification", { Title = "Invalid Place"; Text = "The game detected appears to not be rooms. Please execute this while in rooms!" })
+	
+	local Sound = Instance.new("Sound")
+	Sound.Parent = game.SoundService
+	Sound.SoundId = "rbxassetid://550209561"
+	Sound.Volume = 4
+	Sound.PlayOnRemove = true
+	wait()
+	Sound:Destroy()
+	
 	return
 elseif workspace:FindFirstChild("PathFindPartsFolder") then
 	game.StarterGui:SetCore("SendNotification", { Title = "Warning"; Text = "If you are having issues and the bot is broken, please contact me! geodude#2619" })
+	
+	local Sound = Instance.new("Sound")
+	Sound.Parent = game.SoundService
+	Sound.SoundId = "rbxassetid://550209561"
+	Sound.Volume = 4
+	Sound.PlayOnRemove = true
+	wait()
+	Sound:Destroy()
+	
 	return
 end
 
@@ -123,7 +141,7 @@ game:GetService("RunService").RenderStepped:connect(function()
         if Path then
             if Path.Parent.Name == "Rooms_Locker" then
                 if Entity.Main.Position.Y > -4 then
-                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.CFrame:ToWorldSpace(CFrame.new(0,0,-2)).p).Magnitude < 1 then
+                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.CFrame:ToWorldSpace(CFrame.new(0,0,-2)).p).Magnitude < 1.5 then
                         if LocalPlayer.Character.HumanoidRootPart.Anchored == false then
                             fireproximityprompt(Path.Parent.HidePrompt)
                         end
