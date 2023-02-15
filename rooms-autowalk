@@ -47,6 +47,8 @@ if LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules:FindF
     LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.A90:Destroy() -- Fuck you A90
 end
 
+LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.Scriptable
+
 function GetOut()
     LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.KeyboardMouse
     task.wait()
