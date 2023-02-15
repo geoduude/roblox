@@ -67,12 +67,14 @@ function getLocker()
     for i,v in pairs(workspace.CurrentRooms:GetDescendants()) do
         if v.Name == "Rooms_Locker" then
             if v:FindFirstChild("Door") and v:FindFirstChild("HiddenPlayer") then
-                if v.Door.Position.Y > -3 then -- Prevents going to the lower lockers in the room with the bridge 
-                    if Closest == nil then
-                        Closest = v.Door
-                    else
-                        if (LocalPlayer.Character.HumanoidRootPart.Position - v.Door.Position).Magnitude < (Closest.Position - LocalPlayer.Character.HumanoidRootPart.Position).Magnitude then
+                if v.HiddenPlayer.Value == nil then
+                    if v.Door.Position.Y > -3 then -- Prevents going to the lower lockers in the room with the bridge 
+                        if Closest == nil then
                             Closest = v.Door
+                        else
+                            if (LocalPlayer.Character.HumanoidRootPart.Position - v.Door.Position).Magnitude < (Closest.Position - LocalPlayer.Character.HumanoidRootPart.Position).Magnitude then
+                                Closest = v.Door
+                            end
                         end
                     end
                 end
@@ -117,7 +119,7 @@ game:GetService("RunService").RenderStepped:connect(function()
         if Path then
             if Path.Parent.Name == "Rooms_Locker" then
                 if Entity.Main.Position.Y > -5 then
-                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.Position).Magnitude < 1.25 then
+                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.Position).Magnitude < 1.15 then
                         if LocalPlayer.Character.HumanoidRootPart.Anchored == false then
                             fireproximityprompt(Path.Parent.HidePrompt)
                         end
@@ -130,7 +132,7 @@ game:GetService("RunService").RenderStepped:connect(function()
                 if Cooldown == false then
                     GetOut()
                     Cooldown = true
-                    task.wait(.75)
+                    task.wait(.35)
                     Cooldown = false
                 end
             end
@@ -140,7 +142,7 @@ game:GetService("RunService").RenderStepped:connect(function()
             if Cooldown == false then
                 GetOut()
                 Cooldown = true
-                task.wait(.75)
+                task.wait(.35)
                 Cooldown = false
             end
         end
@@ -151,11 +153,11 @@ while true do
     task.wait()
     local Destination = getPath()
 
-    local path = PathfindingService:CreatePath({ WaypointSpacing = 10, AgentRadius = 0.5, AgentCanJump = false })
-    path:ComputeAsync(LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0,2.8,0), Destination.Position)
+    local path = PathfindingService:CreatePath({ WaypointSpacing = 5, AgentRadius = 0.8, AgentCanJump = false })
+    path:ComputeAsync(LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0,30), Destination.Position)
     local Waypoints = path:GetWaypoints()
 
-    if path.Status ~= Enum.PathStatus.NoPath or path.Status ~= Enum.PathStatus.FailStartNotEmpty or path.Status ~= Enum.PathStatus.FailFinishNotEmpty then
+    if path.Status ~= Enum.PathStatus.NoPath then
     
         Folder:ClearAllChildren()
 
