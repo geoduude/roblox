@@ -1,6 +1,5 @@
 
 -- Made by geodude
--- Usage in multiplayer not reccomended
 
 if game.PlaceId ~= 6839171747 then
     game.StarterGui:SetCore("SendNotification", { Title = "Invalid Place"; Text = "The game detected appears to not be rooms. Please execute this while in rooms!" })
