@@ -120,7 +120,7 @@ game:GetService("RunService").RenderStepped:connect(function()
         if Path then
             if Path.Parent.Name == "Rooms_Locker" then
                 if Entity.Main.Position.Y > -5 then
-                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.Position).Magnitude < 1.3 then
+                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.Position).Magnitude < 1.5 then
                         if LocalPlayer.Character.HumanoidRootPart.Anchored == false then
                             fireproximityprompt(Path.Parent.HidePrompt)
                         end
@@ -154,28 +154,27 @@ while true do
     wait()
     local Destination = getPath()
 
-	
-    local path = PathfindingService:CreatePath({ WaypointSpacing = 6.5, AgentRadius = 0.25, AgentCanJump = false })
-    path:ComputeAsync(LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0,3,0), Destination.Position)
-    local Waypoints = path:GetWaypoints()
+    if LocalPlayer.Character.HumanoidRootPart.Anchored ~= true then
+        local path = PathfindingService:CreatePath({ WaypointSpacing = 6.5, AgentRadius = 0.25, AgentCanJump = false })
+        path:ComputeAsync(LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0,3,0), Destination.Position)
+        local Waypoints = path:GetWaypoints()
 
-    if path.Status ~= Enum.PathStatus.NoPath then
+        if path.Status ~= Enum.PathStatus.NoPath then
     
-        Folder:ClearAllChildren()
+            Folder:ClearAllChildren()
 
-        for _, Waypoint in pairs(Waypoints) do
-            local part = Instance.new("Part")
-            part.Size = Vector3.new(0.6, 6, 0.6)
-            part.Position = Waypoint.Position
-            part.Material = "Neon"
-            part.Transparency = 0.8
-            part.Anchored = true
-            part.CanCollide = false
-            part.Parent = Folder
-        end
+            for _, Waypoint in pairs(Waypoints) do
+                local part = Instance.new("Part")
+                part.Size = Vector3.new(0.6, 6, 0.6)
+                part.Position = Waypoint.Position
+                part.Material = "Neon"
+                part.Transparency = 0.8
+                part.Anchored = true
+                part.CanCollide = false
+                part.Parent = Folder
+            end
 
-        for _, Waypoint in pairs(Waypoints) do
-            if LocalPlayer.Character.HumanoidRootPart.Anchored == false then
+            for _, Waypoint in pairs(Waypoints) do
                 LocalPlayer.Character.Humanoid:MoveTo(Waypoint.Position)
                 LocalPlayer.Character.Humanoid.MoveToFinished:Wait()
             end
