@@ -49,13 +49,13 @@ TextLabel.BackgroundTransparency = 1
 
 local GC = getconnections or get_signal_cons
 if GC then
-	for i,v in pairs(GC(LocalPlayer.Idled)) do
-		if v["Disable"] then
-			v["Disable"](v)
-	elseif v["Disconnect"] then
-			v["Disconnect"](v)
-		end
-	end
+    for i,v in pairs(GC(LocalPlayer.Idled)) do
+        if v["Disable"] then
+            v["Disable"](v)
+        elseif v["Disconnect"] then
+            v["Disconnect"](v)
+        end
+    end
 end
 
 local Folder = Instance.new("Folder")
@@ -194,10 +194,10 @@ while true do
             part.Parent = Folder
         end
 
-		for _, Waypoint in pairs(Waypoints) do
-		    if LocalPlayer.Character.HumanoidRootPart.Anchored ~= true then
-				LocalPlayer.Character.Humanoid:MoveTo(Waypoint.Position)
-				LocalPlayer.Character.Humanoid.MoveToFinished:Wait()
+        for _, Waypoint in pairs(Waypoints) do
+            if LocalPlayer.Character.HumanoidRootPart.Anchored ~= true then
+                LocalPlayer.Character.Humanoid:MoveTo(Waypoint.Position)
+                LocalPlayer.Character.Humanoid.MoveToFinished:Wait()
             end
         end
     end
