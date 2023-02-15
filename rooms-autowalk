@@ -86,8 +86,9 @@ end
 
 function getPath()
     local Part
-
-    if workspace:FindFirstChild("A120") or workspace:FindFirstChild("A60") then
+	
+	local Entity = workspace:FindFirstChild("A60") or workspace:FindFirstChild("A120")
+    if Entity and Entity.Main.Position.Y > -5 then
         Part = getLocker()
     else
         Part = workspace.CurrentRooms[LatestRoom.Value].Door.Door
@@ -153,6 +154,7 @@ while true do
     wait()
     local Destination = getPath()
 
+	
     local path = PathfindingService:CreatePath({ WaypointSpacing = 6.5, AgentRadius = 0.25, AgentCanJump = false })
     path:ComputeAsync(LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0,3,0), Destination.Position)
     local Waypoints = path:GetWaypoints()
