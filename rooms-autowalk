@@ -118,7 +118,7 @@ game:GetService("RunService").RenderStepped:connect(function()
         if Path then
             if Path.Parent.Name == "Rooms_Locker" then
                 if Entity.Main.Position.Y > -5 then
-                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.Position).Magnitude < 1.15 then
+                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.Position).Magnitude < 1.3 then
                         if LocalPlayer.Character.HumanoidRootPart.Anchored == false then
                             fireproximityprompt(Path.Parent.HidePrompt)
                         end
@@ -131,7 +131,7 @@ game:GetService("RunService").RenderStepped:connect(function()
                 if Cooldown == false then
                     GetOut()
                     Cooldown = true
-                    task.wait(.35)
+                    task.wait(.5)
                     Cooldown = false
                 end
             end
@@ -141,7 +141,7 @@ game:GetService("RunService").RenderStepped:connect(function()
             if Cooldown == false then
                 GetOut()
                 Cooldown = true
-                task.wait(.35)
+                task.wait(.5)
                 Cooldown = false
             end
         end
