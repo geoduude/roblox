@@ -149,7 +149,7 @@ game:GetService("RunService").RenderStepped:connect(function()
 end)
 
 while true do
-    task.wait()
+    wait()
     local Destination = getPath()
 
     local path = PathfindingService:CreatePath({ WaypointSpacing = 5, AgentRadius = 0.4, AgentCanJump = false })
