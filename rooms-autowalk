@@ -44,7 +44,9 @@ local Folder = Instance.new("Folder")
 Folder.Parent = workspace
 Folder.Name = "PathFindPartsFolder"
 
-LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.A90:Destroy() -- Fuck you A90
+if LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules:FindFirstChild:("A90") then
+    LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.A90:Destroy() -- Fuck you A90
+end
 
 function GetOut()
     LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.KeyboardMouse
