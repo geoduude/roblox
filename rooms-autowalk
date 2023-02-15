@@ -141,7 +141,7 @@ game:GetService("RunService").RenderStepped:connect(function()
         if Path then
             if Path.Parent.Name == "Rooms_Locker" then
                 if Entity.Main.Position.Y > -4 then
-                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.CFrame:ToWorldSpace(CFrame.new(0,0,-2)).p).Magnitude < 1.5 then
+                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.CFrame:ToWorldSpace(CFrame.new(0,0,-2)).p).Magnitude < 1 then
                         if LocalPlayer.Character.HumanoidRootPart.Anchored == false then
                             fireproximityprompt(Path.Parent.HidePrompt)
                         end
@@ -175,7 +175,7 @@ while true do
     wait()
     local Destination = getPath()
 
-    local path = PathfindingService:CreatePath({ WaypointSpacing = 5, AgentRadius = 0.4, AgentCanJump = false })
+    local path = PathfindingService:CreatePath({ WaypointSpacing = 5, AgentRadius = 0.8, AgentCanJump = false })
     path:ComputeAsync(LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0,2.5,0), Destination.CFrame:ToWorldSpace(CFrame.new(0,0,-2)).p)
     local Waypoints = path:GetWaypoints()
 
