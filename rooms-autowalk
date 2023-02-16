@@ -62,8 +62,6 @@ local Folder = Instance.new("Folder")
 Folder.Parent = workspace
 Folder.Name = "PathFindPartsFolder"
 
-LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.Scriptable
-
 if LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules:FindFirstChild("A90") then
     LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.A90:Destroy() -- Fuck you A90
 end
@@ -73,7 +71,7 @@ function GetOut()
     task.wait()
     VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.W, false, nil)
 
-    for i=1,3 do
+    for i=1,2 do
         task.wait()
     end
 
@@ -105,17 +103,11 @@ function getLocker()
     return Closest
 end
 
-function ResetMovement()
-    LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.KeyboardMouse
-    task.wait()
-    LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.Scriptable
-end
-
 function getPath()
     local Part
 	
-    local Entity = workspace:FindFirstChild("A60") or workspace:FindFirstChild("A120")
-    if Entity and Entity.Main.Position.Y > -15 then
+	local Entity = workspace:FindFirstChild("A60") or workspace:FindFirstChild("A120")
+    if Entity and Entity.Main.Position.Y > -4 then
         Part = getLocker()
     else
         Part = workspace.CurrentRooms[LatestRoom.Value].Door.Door
@@ -126,7 +118,9 @@ end
 LatestRoom:GetPropertyChangedSignal("Value"):Connect(function()
     TextLabel.Text = "Room: "..math.clamp(LatestRoom.Value, 1,1000)
 
-    if LatestRoom.Value == 1000 then
+    if LatestRoom.Value ~= 1000 then
+        LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.Scriptable
+    else
         LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.KeyboardMouse
     end
 end)
@@ -144,8 +138,8 @@ game:GetService("RunService").RenderStepped:connect(function()
     if Entity then
         if Path then
             if Path.Parent.Name == "Rooms_Locker" then
-                if Entity.Main.Position.Y > -10 then
-                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.Position).Magnitude < 1 then
+                if Entity.Main.Position.Y > -4 then
+                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.Position).Magnitude < 1.3 then
                         if LocalPlayer.Character.HumanoidRootPart.Anchored == false then
                             fireproximityprompt(Path.Parent.HidePrompt)
                         end
@@ -153,7 +147,7 @@ game:GetService("RunService").RenderStepped:connect(function()
                 end
             end
         end
-        if Entity.Main.Position.Y < -10 then -- Instead of waiting for them to be deleted just do this LOL
+        if Entity.Main.Position.Y < -5 then -- Instead of waiting for them to be deleted just do this LOL
             if LocalPlayer.Character.HumanoidRootPart.Anchored == true then
                 if Cooldown == false then
                     GetOut()
@@ -177,9 +171,11 @@ end)
 
 while true do
 
+    task.wait()
+
     local Destination = getPath()
 
-    local path = PathfindingService:CreatePath({ WaypointSpacing = 5, AgentRadius = 1.25, AgentCanJump = false })
+    local path = PathfindingService:CreatePath({ WaypointSpacing = 2, AgentRadius = 1.25, AgentCanJump = false })
     path:ComputeAsync(LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0,3,0), Destination.Position)
     local Waypoints = path:GetWaypoints()
 
@@ -201,8 +197,10 @@ while true do
         end
 
         for _, Waypoint in pairs(Waypoints) do
-            LocalPlayer.Character.Humanoid:MoveTo(Waypoint.Position)
-            LocalPlayer.Character.Humanoid.MoveToFinished:Wait()
+            if LocalPlayer.Character.HumanoidRootPart.Anchored == false then
+                LocalPlayer.Character.Humanoid:MoveTo(Waypoint.Position)
+                LocalPlayer.Character.Humanoid.MoveToFinished:Wait()
+            end
         end
     end
 end
