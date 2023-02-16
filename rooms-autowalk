@@ -23,6 +23,8 @@ elseif workspace:FindFirstChild("PathFindPartsFolder") then
 	Sound.PlayOnRemove = true
 	Sound:Destroy()
 	
+	workspace.PathFindPartsFolder:Destroy()
+	
 	return
 end
 
@@ -63,8 +65,6 @@ Folder.Name = "PathFindPartsFolder"
 if LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules:FindFirstChild("A90") then
     LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.A90:Destroy() -- Fuck you A90
 end
-
-LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.Scriptable
 
 function GetOut()
     LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.KeyboardMouse
@@ -107,7 +107,7 @@ function getPath()
     local Part
 	
 	local Entity = workspace:FindFirstChild("A60") or workspace:FindFirstChild("A120")
-    if Entity and Entity.Main.Position.Y > -5 then
+    if Entity and Entity.Main.Position.Y > -4 then
         Part = getLocker()
     else
         Part = workspace.CurrentRooms[LatestRoom.Value].Door.Door
@@ -171,13 +171,11 @@ end)
 
 while true do
 
-    repeat task.wait() until LocalPlayer.Character.HumanoidRootPart.Anchored == false
-
-    wait()
+    task.wait()
 
     local Destination = getPath()
 
-    local path = PathfindingService:CreatePath({ WaypointSpacing = 5, AgentRadius = 0.5, AgentCanJump = false })
+    local path = PathfindingService:CreatePath({ WaypointSpacing = 2, AgentRadius = 1.25, AgentCanJump = false })
     path:ComputeAsync(LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0,3,0), Destination.Position)
     local Waypoints = path:GetWaypoints()
 
@@ -187,8 +185,10 @@ while true do
 
         for _, Waypoint in pairs(Waypoints) do
             local part = Instance.new("Part")
-            part.Size = Vector3.new(0.6, 3, 0.6)
+            part.Size = Vector3.new(1,1,1)
             part.Position = Waypoint.Position
+            part.Shape = "Cylinder"
+            part.Rotation = Vector3.new(0,0,90)
             part.Material = "Neon"
             part.Transparency = 0.9
             part.Anchored = true
@@ -197,8 +197,10 @@ while true do
         end
 
         for _, Waypoint in pairs(Waypoints) do
-            LocalPlayer.Character.Humanoid:MoveTo(Waypoint.Position)
-            LocalPlayer.Character.Humanoid.MoveToFinished:Wait()
+            if LocalPlayer.Character.HumanoidRootPart.Anchored == false then
+                LocalPlayer.Character.Humanoid:MoveTo(Waypoint.Position)
+                LocalPlayer.Character.Humanoid.MoveToFinished:Wait()
+            end
         end
     end
 end
