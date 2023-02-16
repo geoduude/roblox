@@ -135,7 +135,7 @@ game:GetService("RunService").RenderStepped:connect(function()
         end
         if Entity.Main.Position.Y < -5 then -- Instead of waiting for them to be deleted just do this LOL
             if LocalPlayer.Character.HumanoidRootPart.Anchored == true then
-                game.Players.LocalPlayer.Character:SetAttribute("Hiding", false)
+                LocalPlayer.Character:SetAttribute("Hiding", false)
             end
         end
     else
