@@ -190,7 +190,7 @@ while true do
             part.Shape = "Cylinder"
             part.Rotation = Vector3.new(0,0,90)
             part.Material = "Neon"
-            part.Transparency = 0.9
+            part.Transparency = 0
             part.Anchored = true
             part.CanCollide = false
             part.Parent = Folder
