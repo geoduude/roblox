@@ -177,14 +177,7 @@ end)
 
 while true do
 
-    if LocalPlayer.Character.HumanoidRootPart.Anchored == true then
-        repeat task.wait() until LocalPlayer.Character.HumanoidRootPart.Anchored == false
-        wait(.2)
-    end
-
     local Destination = getPath()
-    
-    ResetMovement()
 
     local path = PathfindingService:CreatePath({ WaypointSpacing = 5, AgentRadius = 1.25, AgentCanJump = false })
     path:ComputeAsync(LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0,3,0), Destination.Position)
