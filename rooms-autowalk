@@ -135,7 +135,7 @@ game:GetService("RunService").RenderStepped:connect(function()
         if Path then
             if Path.Parent.Name == "Rooms_Locker" then
                 if Entity.Main.Position.Y > -4 then
-                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.Position).Magnitude < 16 then
+                    if (LocalPlayer.Character.HumanoidRootPart.Position - Path.Position).Magnitude < 2 then
                         if LocalPlayer.Character.HumanoidRootPart.Anchored == false then
                             fireproximityprompt(Path.Parent.HidePrompt)
                         end
