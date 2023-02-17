@@ -91,7 +91,7 @@ function getPath()
     local Part
 	
     local Entity = workspace:FindFirstChild("A60") or workspace:FindFirstChild("A120")
-    if Entity and Entity.Main.Position.Y > -1 then
+    if Entity and Entity.Main.Position.Y > -2 then
         Part = getLocker()
     else
         Part = workspace.CurrentRooms[LatestRoom.Value].Door.Door
@@ -134,7 +134,7 @@ game:GetService("RunService").RenderStepped:connect(function()
     if Entity then
         if Path then
             if Path.Parent.Name == "Rooms_Locker" then
-                if Entity.Main.Position.Y > -1 then
+                if Entity.Main.Position.Y > -2 then
                     if (LocalPlayer.Character.HumanoidRootPart.Position - Path.Position).Magnitude < 2 then
                         if LocalPlayer.Character.HumanoidRootPart.Anchored == false then
                             fireproximityprompt(Path.Parent.HidePrompt)
@@ -143,7 +143,7 @@ game:GetService("RunService").RenderStepped:connect(function()
                 end
             end
         end
-        if Entity.Main.Position.Y < -1 then -- Instead of waiting for them to be deleted just do this LOL
+        if Entity.Main.Position.Y < -2 then
             if LocalPlayer.Character.HumanoidRootPart.Anchored == true then
                 LocalPlayer.Character:SetAttribute("Hiding", false)
             end
