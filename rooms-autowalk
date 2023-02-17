@@ -112,18 +112,18 @@ LatestRoom:GetPropertyChangedSignal("Value"):Connect(function()
         local Sound = Instance.new("Sound")
         Sound.Parent = game.SoundService
         Sound.SoundId = "rbxassetid://4590662766"
-        Sound.Volume = 5
+        Sound.Volume = 3
         Sound.PlayOnRemove = true
         Sound:Destroy()
         
-        game.StarterGui:SetCore("SendNotification", { Title = "youtube.com/geoduude"; Text = "Thank you for using my script!", Duration = 9e9, Button1 = "Close" })
+        game.StarterGui:SetCore("SendNotification", { Title = "youtube.com/geoduude"; Text = "Thank you for using my script!" })
     end
 end)
 
 game:GetService("RunService").RenderStepped:connect(function()
     LocalPlayer.Character.HumanoidRootPart.CanCollide = false
     LocalPlayer.Character.Collision.CanCollide = false
-    LocalPlayer.Character.Collision.Size = Vector3.new(7,LocalPlayer.Character.Collision.Size.Y,7)
+    LocalPlayer.Character.Collision.Size = Vector3.new(8,LocalPlayer.Character.Collision.Size.Y,8)
 
     LocalPlayer.Character.Humanoid.WalkSpeed = 21
 
@@ -142,7 +142,7 @@ game:GetService("RunService").RenderStepped:connect(function()
                 end
             end
         end
-        if Entity.Main.Position.Y < -5 then -- Instead of waiting for them to be deleted just do this LOL
+        if Entity.Main.Position.Y < -4 then -- Instead of waiting for them to be deleted just do this LOL
             if LocalPlayer.Character.HumanoidRootPart.Anchored == true then
                 LocalPlayer.Character:SetAttribute("Hiding", false)
             end
@@ -175,7 +175,6 @@ while true do
             part.Shape = "Cylinder"
             part.Rotation = Vector3.new(0,0,90)
             part.Material = "SmoothPlastic"
-            part.Transparency = 0
             part.Anchored = true
             part.CanCollide = false
             part.Parent = Folder
