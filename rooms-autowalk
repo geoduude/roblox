@@ -108,6 +108,15 @@ LatestRoom:GetPropertyChangedSignal("Value"):Connect(function()
         LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.Scriptable
     else
         LocalPlayer.DevComputerMovementMode = Enum.DevComputerMovementMode.KeyboardMouse
+    
+        local Sound = Instance.new("Sound")
+        Sound.Parent = game.SoundService
+        Sound.SoundId = "rbxassetid://4590662766"
+        Sound.Volume = 5
+        Sound.PlayOnRemove = true
+        Sound:Destroy()
+        
+        game.StarterGui:SetCore("SendNotification", { Title = "youtube.com/geoduude"; Text = "Thank you for using my script!", Duration = 9e9, Button1 = "Close" })
     end
 end)
 
