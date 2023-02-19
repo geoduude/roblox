@@ -161,8 +161,8 @@ while true do
 
     local Destination = getPath()
 
-    local path = PathfindingService:CreatePath({ WaypointSpacing = 1, AgentRadius = 0, AgentCanJump = false })
-    path:ComputeAsync(LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0,2.5,0), Destination.Position)
+    local path = PathfindingService:CreatePath({ WaypointSpacing = 1, AgentRadius = 0.25, AgentCanJump = false })
+    path:ComputeAsync(LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0,3,0), Destination.Position)
     local Waypoints = path:GetWaypoints()
 
     if path.Status ~= Enum.PathStatus.NoPath then
