@@ -61,7 +61,7 @@ Folder.Parent = workspace
 Folder.Name = "PathFindPartsFolder"
 
 if LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules:FindFirstChild("A90") then
-    LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.A90:Destroy() -- Fuck you A90
+    LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.A90.Name = "lol" -- Fuck you A90
 end
 
 function getLocker()
