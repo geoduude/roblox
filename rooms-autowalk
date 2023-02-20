@@ -157,8 +157,6 @@ end)
 
 while true do
 
-    task.wait()
-
     local Destination = getPath()
 
     local path = PathfindingService:CreatePath({ WaypointSpacing = 1, AgentRadius = 0.1, AgentCanJump = false })
