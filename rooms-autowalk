@@ -124,7 +124,7 @@ end)
 game:GetService("RunService").RenderStepped:connect(function()
     LocalPlayer.Character.HumanoidRootPart.CanCollide = false
     LocalPlayer.Character.Collision.CanCollide = false
-    LocalPlayer.Character.Collision.Size = Vector3.new(8,LocalPlayer.Character.Collision.Size.Y,8)
+    LocalPlayer.Character.Collision.CustomPhysicalProperties = PhysicalProperties.new(9e9,9e9,9e9)
 
     LocalPlayer.Character.Humanoid.WalkSpeed = 21
 
@@ -159,7 +159,7 @@ while true do
 
     local Destination = getPath()
 
-    local path = PathfindingService:CreatePath({ WaypointSpacing = 1, AgentRadius = 0.1, AgentCanJump = false })
+    local path = PathfindingService:CreatePath({ WaypointSpacing = 1, AgentRadius = 1, AgentCanJump = false })
     path:ComputeAsync(LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0,2,0), Destination.Position)
     local Waypoints = path:GetWaypoints()
 
