@@ -14,15 +14,6 @@ if game.PlaceId ~= 6839171747 or game.ReplicatedStorage.GameData.Floor.Value ~= 
 	
 	return
 elseif workspace:FindFirstChild("PathFindPartsFolder") then
-	game.StarterGui:SetCore("SendNotification", { Title = "Warning"; Text = "I'm no longer accepting friend requests due to idiots not knowing that JJSploit isnt gonna cut it when using this script, sorry!" })
-	
-	local Sound = Instance.new("Sound")
-	Sound.Parent = game.SoundService
-	Sound.SoundId = "rbxassetid://550209561"
-	Sound.Volume = 5
-	Sound.PlayOnRemove = true
-	Sound:Destroy()
-
 	return
 end
 
