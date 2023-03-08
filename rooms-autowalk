@@ -136,12 +136,12 @@ game:GetService("RunService").RenderStepped:connect(function()
         end
         if Entity.Main.Position.Y < -4 then
             if LocalPlayer.Character.HumanoidRootPart.Anchored == true then
-                LocalPlayer.Character:SetAttribute("Hiding", false)
+                game.ReplicatedStorage.EntityInfo.CamLock:FireServer()
             end
         end
     else
         if LocalPlayer.Character.HumanoidRootPart.Anchored == true then
-            LocalPlayer.Character:SetAttribute("Hiding", false)
+            game.ReplicatedStorage.EntityInfo.CamLock:FireServer()
         end
     end
 end)
