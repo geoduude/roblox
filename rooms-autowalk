@@ -159,14 +159,14 @@ while true do
         Folder:ClearAllChildren()
 
         for _, Waypoint in pairs(Waypoints) do
-            local part = Instance.new("Part")
-            part.Size = Vector3.new(1,1,1)
-            part.Position = Waypoint.Position
-            part.Shape = "Cylinder"
-            part.Rotation = Vector3.new(0,0,90)
-            part.Material = "SmoothPlastic"
-            part.Anchored = true
+	    local part = Instance.new("Part")
+            part.Position = waypoint.Position + Vector3.new(0, 1, 0)
+            part.Size = Vector3.new(.15, .15, .15)
+            part.Color = Color3.new(1, 1, 1)
             part.CanCollide = false
+            part.Material = "Neon"
+            part.Anchored = true
+            part.Shape = "Ball"
             part.Parent = Folder
         end
 
