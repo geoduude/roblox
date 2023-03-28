@@ -9,11 +9,11 @@ local function setup(room)
             model:SetPrimaryPartCFrame(newdoor)
             FakeDoor_Hotel:Destroy()
             workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].CC.LOLL.Prompt.Triggered:Connect(function(plr)
-				_G.InsideChristmasRoom = true
+				_G.InsideChristmasRoom = false
                     plr.Character:MoveTo(game.workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].CC.lol.Position)
                 end)
             workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].CC.lol.Prompt.Triggered:Connect(function(plr)
-				_G.InsideChristmasRoom = false
+				_G.InsideChristmasRoom = true
                     plr.Character:MoveTo(game.workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].CC.LOLL.Position)
                 end)
              workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].CC.SantasSack.Prompt.Triggered:Connect(function()
