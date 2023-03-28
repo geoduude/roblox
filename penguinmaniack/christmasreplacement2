@@ -1,0 +1,67 @@
+local function setup(room)
+    for _, v in pairs(room:GetDescendants()) do
+        if v.Name=="FakeDoor_Hotel" then
+            -- put your code here, v is the door
+            local FakeDoor_Hotel =  workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:FindFirstChild("FakeDoor_Hotel", true)
+            local newdoor = FakeDoor_Hotel.FakeDoor.CFrame
+            local model = game:GetObjects("rbxassetid://11837798052")[1]
+            model.Parent = workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]
+            model:SetPrimaryPartCFrame(newdoor)
+            FakeDoor_Hotel:Destroy()
+            workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].CC.LOLL.Prompt.Triggered:Connect(function(plr)
+				_G.InsideChristmasRoom = true
+                    plr.Character:MoveTo(game.workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].CC.lol.Position)
+                end)
+            workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].CC.lol.Prompt.Triggered:Connect(function(plr)
+				_G.InsideChristmasRoom = false
+                    plr.Character:MoveTo(game.workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].CC.LOLL.Position)
+                end)
+             workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].CC.SantasSack.Prompt.Triggered:Connect(function()
+    local Gift = math.random(1,6)
+if Gift == 1 then
+    firesignal(game.ReplicatedStorage.EntityInfo.DeathHint.OnClientEvent, {"you found candy and choked on it", "Dont be greedy kid", "Merry Christmas"})
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+end
+if Gift == 2 then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAccelerator/PenguinCollab/main/Christmasgun.lua",true))()
+    firesignal(game.ReplicatedStorage.EntityInfo.Caption.OnClientEvent, "You found a Gun, its wrapped!")
+end
+if Gift == 3 then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAccelerator/PenguinCollab/main/Christmasgun2.lua",true))()
+    firesignal(game.ReplicatedStorage.EntityInfo.Caption.OnClientEvent, "You found a Gun! Its wrapped in paper!")
+end
+if Gift == 4 then
+    firesignal(game.ReplicatedStorage.EntityInfo.Caption.OnClientEvent, "You opened up an atomic bomb...")
+    wait(3)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAccelerator/PenguinCollab/main/Nuke.lua",true))()
+end
+if Gift == 5 then
+    firesignal(game.ReplicatedStorage.EntityInfo.Caption.OnClientEvent, "You found Coal...")
+    wait(1)
+    firesignal(game.ReplicatedStorage.EntityInfo.Caption.OnClientEvent, "Don't cry...")
+    wait(.5)
+    local cry = Instance.new("Sound",workspace)
+    cry.SoundId = "rbxassetid://9113234666"
+    cry:Play()
+    cry.Pitch = 1
+end
+if Gift == 6 then
+    firesignal(game.ReplicatedStorage.EntityInfo.Caption.OnClientEvent, "Mmmm.. You ate santa's medication.. you feel.. faster!")
+    local speed = 6
+        local Players = game:GetService("Players")
+        local Plr = Players.LocalPlayer
+        local Char = Plr.Character or Plr.CharacterAdded:Wait()
+        local Hum = Char:WaitForChild("Humanoid")
+
+        while wait() do
+        Hum:SetAttribute("SpeedBoost",speed)
+        wait(10)
+        local speed = 0
+        end
+        end
+        end)
+        end
+    end
+end
+for _, room in pairs(workspace.CurrentRooms:GetChildren()) do setup(room) end
+workspace.CurrentRooms.ChildAdded:Connect(setup)
