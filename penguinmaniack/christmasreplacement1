@@ -490,11 +490,11 @@ workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].CR.Fire
     		loadstring(game:HttpGet("https://raw.githubusercontent.com/geoduude/roblox/master/penguinmaniack/christmasreplacement1-A"))()
 	end)
 workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].CR.Door1.Prompt.Triggered:Connect(function(plr)
-		_G.InsideChristmasRoom = false
+		_G.InsideChristmasRoom = true
 	    plr.Character:MoveTo(game.workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].CR.Door2.Position)
     end)
 workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].CR.Door2.Prompt.Triggered:Connect(function(plr)
-		_G.InsideChristmasRoom = true
+		_G.InsideChristmasRoom = false
 	    plr.Character:MoveTo(game.workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].CR.Door1.Position)
     end)
         end
