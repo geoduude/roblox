@@ -150,7 +150,7 @@ while true do
 
     local Destination = getPath()
 
-    local path = PathfindingService:CreatePath({ WaypointSpacing = 1, AgentRadius = 0.4, AgentCanJump = false })
+    local path = PathfindingService:CreatePath({ WaypointSpacing = 2, AgentRadius = 0.6, AgentCanJump = false })
     path:ComputeAsync(LocalPlayer.Character.HumanoidRootPart.Position - Vector3.new(0,2.5,0), Destination.Position)
     local Waypoints = path:GetWaypoints()
 
