@@ -1,4 +1,4 @@
-local Database = {
+getgenv().CheaterDatabase = {
     "Ttv_Clizx",
     "Q98oxgbqPy",
     "karby_patty"
