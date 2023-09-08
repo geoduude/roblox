@@ -107,7 +107,7 @@ LatestRoom:GetPropertyChangedSignal("Value"):Connect(function()
         Sound.PlayOnRemove = true
         Sound:Destroy()
         
-        game.StarterGui:SetCore("SendNotification", { Title = "youtube.com/geoduude"; Text = "Thank you for using my script!" })
+        game.StarterGui:SetCore("SendNotification", { Title = "youtube.com/geodudee"; Text = "Thank you for using my script!" })
         return
     end
 end)
