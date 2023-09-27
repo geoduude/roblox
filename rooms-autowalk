@@ -1,5 +1,5 @@
 
--- Made by geodude#2619
+-- Made by geodude#0001 / darealgeo
 -- Thanks lolcat, kardin!
 
 if game.PlaceId ~= 6839171747 or game.ReplicatedStorage.GameData.Floor.Value ~= "Rooms" then
