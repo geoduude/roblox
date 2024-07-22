@@ -23,10 +23,9 @@ if GC then
 end
 
 repeat task.wait() until LocalPlayer.PlayerGui:FindFirstChild("MainUI") and LocalPlayer.Character
-task.wait(2.5)
+task.wait(3)
 
-local queueteleport = queue_on_teleport or (fluxus and fluxus.queue_on_teleport)
-queueteleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/geoduude/roblox/master/deathfarmeff.lua'))()")
+queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/geoduude/roblox/master/deathfarmeff.lua'))()")
 
 game.ReplicatedStorage.RemotesFolder.PreRunShop:FireServer()
 repeat task.wait() fireproximityprompt(workspace.CurrentRooms["0"].StarterElevator.Model.Model.SkipButton.SkipPrompt) until not workspace.CurrentRooms["0"].StarterElevator.Model.Model.SkipButton.SkipPrompt.Enabled
