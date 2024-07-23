@@ -29,7 +29,7 @@ queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/ge
 
 game.ReplicatedStorage.RemotesFolder.PreRunShop:FireServer()
 repeat task.wait() fireproximityprompt(workspace.CurrentRooms["0"].StarterElevator.Model.Model.SkipButton.SkipPrompt) until not workspace.CurrentRooms["0"].StarterElevator.Model.Model.SkipButton.SkipPrompt.Enabled
-task.wait(2.5)
+task.wait(2)
 
 local Heartbeat = game:GetService("RunService").Heartbeat:Connect(function()
     LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.zero
