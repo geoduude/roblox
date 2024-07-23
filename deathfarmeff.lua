@@ -38,11 +38,11 @@ end)
 LocalPlayer.Character.Collision.CanCollide = false
 LocalPlayer.Character.Humanoid:SetAttribute("Stunned", true)
 
-local Tween = game:GetService("TweenService"):Create(LocalPlayer.Character.Collision, TweenInfo.new((LocalPlayer.Character.Collision.Position - Vector3.new(0, 2, -6)).Magnitude / 20, Enum.EasingStyle.Linear), {["CFrame"] = CFrame.new(0, 2, -6)})
+local Tween = game:GetService("TweenService"):Create(LocalPlayer.Character.Collision, TweenInfo.new((LocalPlayer.Character.Collision.Position - Vector3.new(0, 2, -6)).Magnitude / 19, Enum.EasingStyle.Linear), {["CFrame"] = CFrame.new(0, 2, -6)})
 Tween:Play()
 Tween.Completed:Wait()
 
-local TweenToKey = game:GetService("TweenService"):Create(LocalPlayer.Character.Collision, TweenInfo.new((LocalPlayer.Character.Collision.Position - Vector3.new(-11.5, 2, -45)).Magnitude / 20, Enum.EasingStyle.Linear), {["CFrame"] = CFrame.new(-11.5, 2, -45)})
+local TweenToKey = game:GetService("TweenService"):Create(LocalPlayer.Character.Collision, TweenInfo.new((LocalPlayer.Character.Collision.Position - Vector3.new(-11.5, 2, -45)).Magnitude / 19, Enum.EasingStyle.Linear), {["CFrame"] = CFrame.new(-11.5, 2, -45)})
 TweenToKey:Play()
 
 repeat task.wait()
@@ -50,11 +50,11 @@ repeat task.wait()
 until LocalPlayer.Character:FindFirstChild("Key")
 TweenToKey:Pause()
 
-local PrepareTweenToDoor = game:GetService("TweenService"):Create(LocalPlayer.Character.Collision, TweenInfo.new((LocalPlayer.Character.Collision.Position - Vector3.new(-4, 2, -48.7)).Magnitude / 20, Enum.EasingStyle.Linear), {["CFrame"] = CFrame.new(-4, 2, -48.7)})
+local PrepareTweenToDoor = game:GetService("TweenService"):Create(LocalPlayer.Character.Collision, TweenInfo.new((LocalPlayer.Character.Collision.Position - Vector3.new(-4, 2, -48.7)).Magnitude / 19, Enum.EasingStyle.Linear), {["CFrame"] = CFrame.new(-4, 2, -48.7)})
 PrepareTweenToDoor:Play()
 PrepareTweenToDoor.Completed:Wait()
 
-local TweenToDoor = game:GetService("TweenService"):Create(LocalPlayer.Character.Collision, TweenInfo.new((LocalPlayer.Character.Collision.Position - Vector3.new(15.7, 2, -48.7)).Magnitude / 20, Enum.EasingStyle.Linear), {["CFrame"] = CFrame.new(15.7, 2, -48.7)})
+local TweenToDoor = game:GetService("TweenService"):Create(LocalPlayer.Character.Collision, TweenInfo.new((LocalPlayer.Character.Collision.Position - Vector3.new(15.7, 2, -48.7)).Magnitude / 19, Enum.EasingStyle.Linear), {["CFrame"] = CFrame.new(15.7, 2, -48.7)})
 TweenToDoor:Play()
 
 repeat task.wait()
