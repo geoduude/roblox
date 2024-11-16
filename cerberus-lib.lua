@@ -2151,17 +2151,10 @@ function windowHandler:Tab(tabName: string, tabImage: string): table
 							end
 						end)
 						
-						pageOpenTween.Completed:Connect(function()
-							if pageOpenTween.PlaybackState == Enum.PlaybackState.Completed then
-								logoHideTween:Play()
-							end
-						end)
-						
 						selfInfo.isQueued = true
 						foundPageCloseTween:Play()
 						foundTabCloseTween:Play()
 						foundTabSeperatorCloseTween:Play()
-						logoShowTween:Play()
 					elseif tabInfo.isQueued then
 						tabInfo.isQueued = false
 					end
