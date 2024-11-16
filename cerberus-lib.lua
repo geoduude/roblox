@@ -2629,9 +2629,10 @@ function elementHandler:Slider(sliderName: string, maximumValue: number, minimum
 	local absPos
 	local absSize
 
-	local round = "%." .. valueRounding or 0 .. "f"
 	minimumValue = minimumValue or 0
 	maximumValue = maximumValue or 100
+	valueRounding = valueRounding or 0
+	local roundingAmount = "%." .. valueRounding .. "f"
 	
 	assert(maximumValue > minimumValue, "Maximum must be greater than minimum.")
 	
@@ -2668,7 +2669,7 @@ function elementHandler:Slider(sliderName: string, maximumValue: number, minimum
 				local percentOfBarFilled = (mouse.X - absPos.X) / absSize.X
 				sliderBar.Size = UDim2.new(0,math.max(minimumClosePixelsLeft, mouse.X - absPos.X),1,0)
 
-				sliderValue = tonumber(string.format(round, minimumValue + (maxMinRange * percentOfBarFilled)))
+				sliderValue = tonumber(string.format(roundingAmount, minimumValue + (maxMinRange * percentOfBarFilled)))
 			end
 
 			slider.Value = sliderValue
@@ -2694,7 +2695,7 @@ function elementHandler:Slider(sliderName: string, maximumValue: number, minimum
 				local absPos = sliderBar.AbsolutePosition
 				local absSize = sliderBar.Parent.EmptySliderBackground.AbsoluteSize
 				local percentOfBarFilled = enteredNum / absSize.X
-				sliderValue = tonumber(string.format(round, enteredNum))
+				sliderValue = tonumber(string.format(roundingAmount, enteredNum))
 				sliderInstance.TextGrouping.NumberText.Text = math.round(sliderValue)
 				sliderBar.Size = UDim2.new((sliderValue - minimumValue) / maxMinRange,0,1,0)
 
