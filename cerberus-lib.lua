@@ -2707,7 +2707,8 @@ function elementHandler:Slider(sliderName: string, callback, maximumValue: numbe
 			sliderInstance.TextGrouping.NumberText.Text = math.round(sliderValue)
 		end
 	end
-	
+
+	slider.Value = sliderValue
 	slider.Type = "Slider"
 	slider.IdentifierText = sliderName or "N/A"
 	slider.Instance = sliderInstance
