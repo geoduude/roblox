@@ -2619,7 +2619,7 @@ function dropdownHandler:ChangeText(newText: string)
 	self.IdentifierText = newText
 end
 
-function elementHandler:Slider(sliderName: string, callback, maximumValue: number, minimumValue: number): table
+function elementHandler:Slider(sliderName: string, maximumValue: number, minimumValue: number, valueRounding: number, callback): table
 	local slider = setmetatable({}, sliderHandler) -- MAKE RIGHT CLICK AND BAR GOES TO MID
 	local sliderInstance = originalElements.Slider:Clone()
 	local isMouseDown = false
@@ -2629,6 +2629,7 @@ function elementHandler:Slider(sliderName: string, callback, maximumValue: numbe
 	local absPos
 	local absSize
 
+	local round = "%." .. valueRounding or 0 .. "f"
 	minimumValue = minimumValue or 0
 	maximumValue = maximumValue or 100
 	
@@ -2666,11 +2667,12 @@ function elementHandler:Slider(sliderName: string, callback, maximumValue: numbe
 			else
 				local percentOfBarFilled = (mouse.X - absPos.X) / absSize.X
 				sliderBar.Size = UDim2.new(0,math.max(minimumClosePixelsLeft, mouse.X - absPos.X),1,0)
-				sliderValue = minimumValue + (maxMinRange * percentOfBarFilled)
+
+				sliderValue = tonumber(string.format(round, minimumValue + (maxMinRange * percentOfBarFilled)))
 			end
 
 			slider.Value = sliderValue
-			sliderInstance.TextGrouping.NumberText.Text = math.round(sliderValue)
+			sliderInstance.TextGrouping.NumberText.Text = sliderValue
 			callback(sliderValue)
 		end
 		
@@ -2692,9 +2694,11 @@ function elementHandler:Slider(sliderName: string, callback, maximumValue: numbe
 				local absPos = sliderBar.AbsolutePosition
 				local absSize = sliderBar.Parent.EmptySliderBackground.AbsoluteSize
 				local percentOfBarFilled = enteredNum / absSize.X
-				sliderValue = enteredNum
+				sliderValue = tonumber(string.format(round, enteredNum))
 				sliderInstance.TextGrouping.NumberText.Text = math.round(sliderValue)
 				sliderBar.Size = UDim2.new((sliderValue - minimumValue) / maxMinRange,0,1,0)
+
+				slider.Value = sliderValue
 				callback(sliderValue)
 			else
 				sliderInstance.TextGrouping.NumberText.Text = "ERR"
@@ -2704,7 +2708,7 @@ function elementHandler:Slider(sliderName: string, callback, maximumValue: numbe
 				end
 			end
 		else
-			sliderInstance.TextGrouping.NumberText.Text = math.round(sliderValue)
+			sliderInstance.TextGrouping.NumberText.Text = sliderValue
 		end
 	end
 
