@@ -1056,7 +1056,7 @@ local function createOriginialElements()
 		numberText.BorderSizePixel = 0
 		numberText.AnchorPoint = Vector2.new(1,0)
 		numberText.Position = UDim2.new(1, 0, 0, 0)
-		numberText.Size = UDim2.new(1, 0, 1, 0)
+		numberText.Size = UDim2.new(0.5, 0, 1, 0)
 		numberText.Font = Enum.Font.Gotham
 		numberText.PlaceholderColor3 = Color3.fromRGB(139, 141, 147)
 		numberText.PlaceholderText = ""
@@ -1064,7 +1064,6 @@ local function createOriginialElements()
 		numberText.TextColor3 = Color3.fromRGB(139, 141, 147)
 		numberText.TextSize = 14.000
 		numberText.TextXAlignment = Enum.TextXAlignment.Right
-		numberText.ClipsDescendants = true
 		
 		sliderText.Name = "SliderText"
 		sliderText.Parent = textGrouping
