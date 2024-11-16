@@ -2725,6 +2725,8 @@ function elementHandler:Slider(sliderName: string, callback, maximumValue: numbe
 	
 	sliderInstance.Parent = self.ElementToParentChildren
 	sliderInstance.TextGrouping.SliderText.Size = UDim2.new(0, sliderInstance.TextGrouping.AbsoluteSize.X - textPixelOffset - requiredNumberTextSpace.X, 1, 0)
+
+	return slider
 end
 
 function elementHandler:SearchBar(placeholderText: string): table
@@ -2894,7 +2896,7 @@ function elementHandler:Keybind(keybindName: string, callback, defaultKey: strin
 	local textAnimationSpeed = .025
 	local textAnimation
 	
-	local pressKeyMsg = "Press a key..."
+	local pressKeyMsg = "..."
 	local textParams = Instance.new("GetTextBoundsParams")
 	textParams.Text = pressKeyMsg
 	textParams.Width = 10000
