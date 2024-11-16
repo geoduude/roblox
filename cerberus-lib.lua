@@ -2174,7 +2174,6 @@ function windowHandler:Tab(tabName: string, tabImage: string): table
 				pageOpenTween:Play()
 				tabOpenTween:Play()
 				tabSeperatorOpenTween:Play()
-				logoHideTween:Play()
 			end
 		end
 		
@@ -2183,7 +2182,6 @@ function windowHandler:Tab(tabName: string, tabImage: string): table
 			tabCloseTween:Play()
 			tabSeperatorCloseTween:Play()
 			pageCloseTween:Play()
-			logoShowTween:Play()
 		end
 		
 		if selfInfo.isOpen then
