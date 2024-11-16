@@ -2619,7 +2619,7 @@ function dropdownHandler:ChangeText(newText: string)
 	self.IdentifierText = newText
 end
 
-function elementHandler:Slider(sliderName: string, maximumValue: number, minimumValue: number, valueRounding: number, callback): table
+function elementHandler:Slider(sliderName: string, minimumValue: number, maximumValue: number, valueRounding: number, callback): table
 	local slider = setmetatable({}, sliderHandler) -- MAKE RIGHT CLICK AND BAR GOES TO MID
 	local sliderInstance = originalElements.Slider:Clone()
 	local isMouseDown = false
@@ -2691,7 +2691,9 @@ function elementHandler:Slider(sliderName: string, maximumValue: number, minimum
 	local function onFocusLost(enterPressed)
 		if enterPressed then
 			local enteredNum = tonumber(sliderInstance.TextGrouping.NumberText.Text)
-			if typeof(enteredNum) == "number" and enteredNum >= minimumValue and enteredNum <= maximumValue then
+			if typeof(enteredNum) == "number" then
+				enteredNum = math.clamp(enteredNum, minimumValue, maximumValue)
+
 				local absPos = sliderBar.AbsolutePosition
 				local absSize = sliderBar.Parent.EmptySliderBackground.AbsoluteSize
 				local percentOfBarFilled = enteredNum / absSize.X
@@ -2709,7 +2711,7 @@ function elementHandler:Slider(sliderName: string, maximumValue: number, minimum
 				end
 			end
 		else
-			sliderInstance.TextGrouping.NumberText.Text = tonumber(sliderValue)
+			sliderInstance.TextGrouping.NumberText.Text = sliderValue
 		end
 	end
 
