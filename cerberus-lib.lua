@@ -2896,7 +2896,7 @@ function elementHandler:Keybind(keybindName: string, callback, defaultKey: strin
 	local textAnimationSpeed = .025
 	local textAnimation
 	
-	local pressKeyMsg = "..."
+	local pressKeyMsg = ". . ."
 	local textParams = Instance.new("GetTextBoundsParams")
 	textParams.Text = pressKeyMsg
 	textParams.Width = 10000
