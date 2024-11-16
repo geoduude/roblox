@@ -2709,7 +2709,7 @@ function elementHandler:Slider(sliderName: string, maximumValue: number, minimum
 				end
 			end
 		else
-			sliderInstance.TextGrouping.NumberText.Text = sliderValue
+			sliderInstance.TextGrouping.NumberText.Text = tonumber(sliderValue)
 		end
 	end
 
