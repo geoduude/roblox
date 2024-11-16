@@ -2668,7 +2668,8 @@ function elementHandler:Slider(sliderName: string, callback, maximumValue: numbe
 				sliderBar.Size = UDim2.new(0,math.max(minimumClosePixelsLeft, mouse.X - absPos.X),1,0)
 				sliderValue = minimumValue + (maxMinRange * percentOfBarFilled)
 			end
-			
+
+			slider.Value = sliderValue
 			sliderInstance.TextGrouping.NumberText.Text = math.round(sliderValue)
 			callback(sliderValue)
 		end
